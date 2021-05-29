@@ -1,13 +1,17 @@
 import React from "react";
 
-import { Title } from "./styled";
+import { Title, Paragrafo } from "./styled";
+import { Container } from "../../styles/globalStyles";
 
 export default function Login() {
   return (
-    <>
-      <Title>Hello world</Title>
-      <Title>Oi</Title>
-      <p>lorem</p>
-    </>
+    <Container>
+      <Title isRed={false}>
+        Hello world
+        <small>Hello again</small>
+      </Title>
+      <Title isRed>Oi</Title>
+      <Paragrafo>lorem</Paragrafo>
+    </Container>
   );
 }

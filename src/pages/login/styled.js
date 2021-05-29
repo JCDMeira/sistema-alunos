@@ -1,6 +1,12 @@
-import styled from "style-components";
+import styled from "styled-components";
 
-/* eslint-disable import/prefer-default-export */
 export const Title = styled.h1`
-  background: black;
+  color: ${(props) => (props.isRed ? "red" : "blue")};
+
+  small {
+    font-size: 12pt;
+    margin-left: 15px;
+    color: #999;
+  }
 `;
+export const Paragrafo = styled.p``;
