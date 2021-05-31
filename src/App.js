@@ -3,18 +3,21 @@ import Routes from "../src/routes";
 
 // # Importação de componentes
 import Header from "../src/components/header";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
+
+// # arquivos
+import history from "../src/services/history";
 
 // # Importação de estilos
 import GlobalStyle from "./styles/globalStyles";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Header />
       <Routes />
       <GlobalStyle />
-    </BrowserRouter>
+    </Router>
   );
 }
 
