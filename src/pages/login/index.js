@@ -12,6 +12,7 @@ export default function Login() {
       </Title>
       <Title isRed>Oi</Title>
       <Paragrafo>lorem</Paragrafo>
+      <button type="button">Enviar</button>
     </Container>
   );
 }
