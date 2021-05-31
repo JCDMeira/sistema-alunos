@@ -1,5 +1,6 @@
 import React from "react";
 import Routes from "../src/routes";
+import { ToastContainer } from "react-toastify";
 
 // # Importação de componentes
 import Header from "../src/components/header";
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <Routes />
       <GlobalStyle />
+      <ToastContainer autoClose={3000} className="toast-container" />
     </Router>
   );
 }
