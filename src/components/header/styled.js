@@ -13,4 +13,7 @@ export const Nav = styled.nav`
     margin: 0 10px 0;
     font-weight: bold;
   }
+  p {
+    color: white;
+  }
 `;
