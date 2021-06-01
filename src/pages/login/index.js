@@ -1,9 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
+// # Importação de estilos
 import { Title, Paragrafo } from "./styled";
 import { Container } from "../../styles/globalStyles";
 
 export default function Login() {
+  const dispatch = useDispatch();
+
+  function handleClick(e) {
+    e.preventDefault();
+
+    dispatch({
+      type: "BOTAO_CLICADO",
+    });
+  }
+
   return (
     <Container>
       <Title isRed={false}>
@@ -12,7 +24,9 @@ export default function Login() {
       </Title>
       <Title isRed>Oi</Title>
       <Paragrafo>lorem</Paragrafo>
-      <button type="button">Enviar</button>
+      <button type="button" onClick={handleClick}>
+        Enviar
+      </button>
     </Container>
   );
 }
