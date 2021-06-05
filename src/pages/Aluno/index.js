@@ -9,12 +9,12 @@ import { Container } from "../../styles/globalStyles";
 // # Arquivos próprios
 import * as exampleActions from "../../store/modules/example/actions";
 
-export default function Login() {
+export default function Aluno() {
   const dispatch = useDispatch();
 
   return (
     <Container>
-      <h1>Login</h1>
+      <h1>Aluno</h1>
     </Container>
   );
 }
