@@ -34,7 +34,6 @@ export default function Login() {
     if (formErrors) return;
 
     dispach(actions.loginRequest({ email, password }));
-    console.log("passei");
   };
   return (
     <Container>
