@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 // # Importação de componentes
-import Header from "../src/components/header";
+import Header from "../src/components/Header";
 import { Router } from "react-router-dom";
 
 // # arquivos
