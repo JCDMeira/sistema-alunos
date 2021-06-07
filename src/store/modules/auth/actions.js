@@ -11,3 +11,6 @@ export function loginSuccess(payload) {
 export function loginFailure(payload) {
   return { type: types.LOGIN_FAILURE, payload };
 }
+export function registerRequest(payload) {
+  return { type: types.REGISTER_REQUEST, payload };
+}
