@@ -82,7 +82,7 @@ export default function Register() {
         </label>
 
         <label htmlFor="password">
-          Senha:
+          {id ? "Nova senha" : "Senha:"}
           <input
             type="password"
             value={password}

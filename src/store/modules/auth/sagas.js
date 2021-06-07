@@ -33,9 +33,43 @@ function persistRehydrate(payload) {
   axios.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
-function registerRequest({ payload }) {
+function* registerRequest({ payload }) {
   // eslint-disable-next-line no-unused-vars
   const { id, nome, email, password } = payload;
+  console.log(id, nome, email, password);
+
+  try {
+    if (id) {
+      yield call(axios.put, "/users", {
+        email,
+        nome,
+        password: password || undefined,
+      });
+      toast.success("Dados alterados com successo");
+      yield put(actions.registerUpdatedSuccess((nome, email, password)));
+    } else {
+      yield call(axios.post, "/users", {
+        email,
+        nome,
+        password,
+      });
+      toast.success("Conta criada com successo");
+      yield put(actions.registerCreatedSuccess(nome, email, password));
+      history.push("/login");
+    }
+  } catch (e) {
+    const errors = get(e, "reponse.data.erros", []);
+    // eslint-disable-next-line no-unused-vars
+    const status = get(e, "response.status", 0);
+
+    if (errors.length > 0) {
+      errors.map((error) => toast.error(error));
+    } else {
+      toast.error("Erro desconhecido");
+    }
+
+    yield put(actions.registerFailure());
+  }
 }
 
 export default all([
