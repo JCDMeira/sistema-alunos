@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
     case types.LOGIN_SUCCESS: {
       const newState = { ...state };
       newState.isLoading = true;
+      newState.isLoggedIn = true;
       newState.token = action.payload.token;
       newState.user = action.payload.user;
       newState.isLoading = false;

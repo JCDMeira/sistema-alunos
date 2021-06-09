@@ -18,7 +18,15 @@ function* loginRequest({ payload }) {
 
     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
-    history.push(payload.prevPath);
+    history.push(payload.prevPath); //@ Instrutor não usa o history
+    /*
+      !Importante!
+      @ não importa o history e nem tem o arquivo,
+
+      ?        | Código |
+      ?   payload.history.push(payload.prevPath);
+
+    */
   } catch (e) {
     toast.error("Usuário ou senha inválidos");
     yield put(actions.loginFailure());
@@ -46,7 +54,7 @@ function* registerRequest({ payload }) {
         password: password || undefined,
       });
       toast.success("Dados alterados com successo");
-      yield put(actions.registerUpdatedSuccess((nome, email, password)));
+      yield put(actions.registerUpdatedSuccess({ nome, email, password }));
     } else {
       yield call(axios.post, "/users", {
         email,
@@ -54,11 +62,11 @@ function* registerRequest({ payload }) {
         password,
       });
       toast.success("Conta criada com successo");
-      yield put(actions.registerCreatedSuccess(nome, email, password));
+      yield put(actions.registerCreatedSuccess({ nome, email, password }));
       history.push("/login");
     }
   } catch (e) {
-    const errors = get(e, "reponse.data.erros", []);
+    const errors = get(e, "reponse.data.errors", []);
     // eslint-disable-next-line no-unused-vars
     const status = get(e, "response.status", 0);
 
