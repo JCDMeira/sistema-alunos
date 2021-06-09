@@ -3,7 +3,7 @@ import { FaHome, FaSignInAlt, FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import { Nav } from "./styled";
-
+//@ Header com maiuscula
 export default function Header() {
   return (
     <Nav>
