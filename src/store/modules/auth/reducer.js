@@ -29,7 +29,6 @@ export default function (state = initialState, action) {
     case types.REGISTER_REQUEST: {
       const newState = { ...state };
       newState.isLoading = true;
-      console.log("request");
       return newState;
     }
     case types.REGISTER_FAILURE: {
@@ -41,7 +40,6 @@ export default function (state = initialState, action) {
       const newState = { ...state };
       newState.user.nome = action.payload.nome;
       newState.user.email = action.payload.email;
-      console.log("reducer", newState.user.email);
       newState.isLoading = false;
       return newState;
     }
