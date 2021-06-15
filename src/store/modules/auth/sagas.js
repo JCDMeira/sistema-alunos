@@ -44,8 +44,8 @@ function persistRehydrate(payload) {
 function* registerRequest({ payload }) {
   // eslint-disable-next-line no-unused-vars
   const { id, nome, email, password } = payload;
-  console.log(id, nome, email, password);
 
+  console.log("sagas", email);
   try {
     if (id) {
       yield call(axios.put, "/users", {
@@ -53,8 +53,9 @@ function* registerRequest({ payload }) {
         nome,
         password: password || undefined,
       });
-      toast.success("Dados alterados com successo");
+      toast.success("Conta alterada com sucesso!");
       yield put(actions.registerUpdatedSuccess({ nome, email, password }));
+      //
     } else {
       yield call(axios.post, "/users", {
         email,
@@ -69,6 +70,12 @@ function* registerRequest({ payload }) {
     const errors = get(e, "reponse.data.errors", []);
     // eslint-disable-next-line no-unused-vars
     const status = get(e, "response.status", 0);
+
+    if (status === 401) {
+      toast.error("Você precisa fazer login novamente");
+      yield put(actions.loginFailure());
+      return history.push("/login");
+    }
 
     if (errors.length > 0) {
       errors.map((error) => toast.error(error));

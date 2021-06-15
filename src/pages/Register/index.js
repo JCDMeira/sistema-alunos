@@ -53,6 +53,7 @@ export default function Register() {
 
     if (formErrors) return;
 
+    console.log("index", email);
     dispatch(actions.registerRequest({ nome, email, password, id }));
   }
   return (
