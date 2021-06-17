@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 // # Styles
 import { Container } from "../../styles/globalStyles";
-import { AlunoContainer, ProfilePicture } from "./styled";
+import { AlunoContainer, ProfilePicture, NovoAluno } from "./styled";
 
 // # Own files
 //import * as exampleActions from "../../store/modules/example/actions";
@@ -72,7 +72,7 @@ export default function Alunos() {
 
       <h1>Alunos</h1>
 
-      {/* <NovoAluno to="/aluno/">Novo aluno</NovoAluno> */}
+      <NovoAluno to="/aluno/">Novo aluno</NovoAluno>
 
       <AlunoContainer>
         {alunos.map((aluno, index) => (
