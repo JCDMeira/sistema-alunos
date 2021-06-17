@@ -13,18 +13,25 @@
 
 - [Sobre o projeto](#id00)
 - [Tecnologias utilizadas](#id01)
+- [Tecnologias utilizadas](#id01.1)
 - [Procedimentos de instalação](#id02)
 - [Meios de contato](#id06)
 
 #  📝 Sobre o projeto <a name="id00"></a>
 
-Projeto realizado acompanhando os módulos 15 do curso de [JavaScript e TypeScript do básico ao avançado 2020](https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/), com obejtivo de se aprofundar em conhecimentos de React enquanto constroi o projeto.
+Projeto realizado acompanhando os módulos 15 do curso de [JavaScript e TypeScript do básico ao avançado 2020](https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/), com obejtivo de se aprofundar em conhecimentos de React enquanto constroi o projeto. Também busca consumir dados de uma API e trabalhar com a mostra de dados dinâmicos e trabalhar os processos CRUD (create, read, upadate e delete). Dessa forma contemplando o uso de processos que grande parte dos projetos reais utilizam.
 
 
 # 🛠 Tecnologias utilizadas <a name="id01"></a>
 
 - [x] React
+- [x] React Toastify
+- [x] React router DOM
 - [x] Styled Components
+- [x] React Redux (Redux saga, Redux persist)
+
+# 🛠 Ferramentas adicionais utilizadas <a name="id01.1"></a>
+- [x] Lodash
 - [x] Eslint
 - [x] prettier
 
