@@ -4,6 +4,7 @@ import { get } from "lodash";
 import PropTypes from "prop-types";
 import { isEmail, isInt, isFloat } from "validator";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 // # Styles
 import { Form } from "./styled";
@@ -13,8 +14,11 @@ import { Container } from "../../styles/globalStyles";
 import Loading from "../../components/Loading";
 import axios from "../../services/axios";
 import history from "../../services/history";
+import * as actions from "../../store/modules/auth/actions";
 
 export default function Aluno({ match }) {
+  const dispach = useDispatch();
+
   const id = get(match, "params.id", 0);
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
@@ -52,39 +56,81 @@ export default function Aluno({ match }) {
     getData();
   }, [id]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let formErros = false;
+    let formErrors = false;
 
     if (nome.length < 3 || nome.length > 255) {
       toast.error("Nome precisa ter entre 3 e 255 caracteres.");
-      formErros = true;
+      formErrors = true;
     }
 
     if (sobrenome.length < 3 || sobrenome.length > 255) {
       toast.error("Sobrenome precisa ter entre 3 e 255 caracteres.");
-      formErros = true;
+      formErrors = true;
     }
 
     if (!isEmail(email)) {
       toast.error("E-mail inválido.");
-      formErros = true;
+      formErrors = true;
     }
 
     if (!isInt(String(idade))) {
       toast.error("Idade inválida.");
-      formErros = true;
+      formErrors = true;
     }
 
     if (!isFloat(String(peso))) {
       toast.error("Peso inválido.");
-      formErros = true;
+      formErrors = true;
     }
 
     if (!isFloat(String(altura))) {
       toast.error("Altura inválida.");
-      formErros = true;
+      formErrors = true;
+    }
+
+    if (formErrors) return;
+
+    try {
+      if (id) {
+        //_ editando
+        setIsLoading(true);
+        await axios.put(`/alunos/${id}`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+        toast.success("Aluno(a) editado(a) com sucesso!");
+      } else {
+        //_ criando
+        await axios.post(`/alunos`, {
+          nome,
+          sobrenome,
+          email,
+          idade,
+          peso,
+          altura,
+        });
+        toast.success("Aluno(a) criado(a) com sucesso!");
+      }
+      setIsLoading(false);
+    } catch (err) {
+      const status = get(err, "response.status", 0);
+      const data = get(err, "response.data", {});
+      const errors = get(data, "errors", []);
+
+      if (errors.length > 0) {
+        errors.map((error) => toast.error(error));
+      } else {
+        toast.error("Erro desconhecido");
+      }
+
+      if (status === 401) dispach(actions.loginFailure());
     }
   };
 
